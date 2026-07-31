@@ -1,8 +1,9 @@
 .feature-section {
     min-height: 100vh;
     padding: 100px 8%;
-    background: #f8fafc;
+    background: #545556;
     color: #172033;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 /* Header */
@@ -15,15 +16,16 @@
 
 .feature-header h1 {
     font-size: 42px;
-    line-height: 1.2;
     margin-bottom: 20px;
-    color: #111827;
+    color: white;
+   
 }
 
 .feature-header p {
     font-size: 18px;
     line-height: 1.6;
-    color: #64748b;
+    color: #f5f6f8;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 
@@ -32,21 +34,11 @@
 .available-feature {
     max-width: 1000px;
     margin: auto;
-
     padding: 50px;
-
     border-radius: 24px;
-
-    background: linear-gradient(
-        135deg,
-        #111827,
-        #1e1b4b
-    );
-
-    color: white;
-
-    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.18);
-
+    background: rgb(196, 190, 190);
+    color: rgb(0, 0, 0);
+    box-shadow: 0 20px 50px rgba(1, 1, 2, 0.18);
     position: relative;
     overflow: hidden;
 }
@@ -55,20 +47,14 @@
 /* Small purple glow */
 
 .available-feature::after {
-    content: "";
-
     position: absolute;
     width: 250px;
     height: 250px;
-
-    background: #6366f1;
+    background: #b9965f;
     opacity: 0.15;
-
     border-radius: 50%;
-
     right: -80px;
     top: -80px;
-
     filter: blur(30px);
 }
 
@@ -80,22 +66,7 @@
     z-index: 1;
 }
 
-.feature-number {
-    display: inline-block;
 
-    padding: 6px 12px;
-
-    border-radius: 20px;
-
-    background: rgba(99, 102, 241, 0.15);
-
-    color: #a5b4fc;
-
-    font-size: 14px;
-    font-weight: 600;
-
-    margin-bottom: 20px;
-}
 
 .feature-content h2 {
     font-size: 32px;
@@ -104,7 +75,7 @@
 
 .feature-description {
     font-size: 18px;
-    color: #cbd5e1;
+    color: #5aa04b;
 
     margin-bottom: 30px;
 }
@@ -125,7 +96,7 @@
 .feature-content li {
     margin-bottom: 12px;
 
-    color: #e2e8f0;
+    color: #087b02;
 
     font-size: 16px;
 }

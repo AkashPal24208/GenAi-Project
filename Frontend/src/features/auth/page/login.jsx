@@ -1,7 +1,8 @@
 import React,{useState} from 'react'
 import { useNavigate,Link } from 'react-router-dom'
-import "../auth.form.scss"
+// import "../auth.form.scss"
 import { useAuth } from '../hooks/useAuth'
+import "../css/Login.css"
 
 
 const Login = () => {
@@ -29,31 +30,34 @@ const Login = () => {
 
   return (
     <main>
-     <div className="form-container">
-        <h1>Login</h1>
+ <div className="form-container">
+         <h1>Login</h1>
 
         <form onSubmit={handleSubmit}>
 
    {/* for login details  */}
       <div className="input-group">
-        <label htmlFor="email">Email</label>
+        <label htmlFor="email"><strong>Email:</strong></label>
         <input 
           onChange={(e)=>{setEmail(e.target.value)}}
         type="email" id="email" name="email" placeholder='Enter your email' />
       </div>
+
       {/* for password */}
+
        <div className="input-group">
-        <label htmlFor="password">Password</label>
+        <label htmlFor="password"><strong>Password:</strong></label>
         <input 
         onChange={(e)=>{setPassword(e.target.value)}}
         type="password" id="password" name="password" placeholder='Enter your password' />
       </div>
+
         <button className='button primary-button'>Login</button>
         </form>
 
          <p>Don't have an account ? Create Account : <Link to={"/register"}>Register</Link></p>
 
-    </div>
+</div>
     </main>
    
   )

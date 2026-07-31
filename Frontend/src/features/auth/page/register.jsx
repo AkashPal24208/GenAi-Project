@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import { useNavigate,Link } from 'react-router'
 import { useAuth } from '../hooks/useAuth';
-
+import "../css/Register.css"
 // 
 const register = () => {
   const navigate =useNavigate();  
@@ -27,27 +27,27 @@ const register = () => {
   // return 
   return (
     <main>
-     <div className="form-conatiner">
+     <div className="form-container">
         <h1>Register</h1>
 
         <form onSubmit={handleSubmit}>
           {/* username required */}
          <div className="input-group">
-        <label htmlFor="username">Username</label>
+        <label htmlFor="username"><strong>UserName:</strong></label>
         <input 
           onChange={(e) =>{setUsername(e.target.value)}}
           type="text" id="username" name="username" placeholder='Enter username' />
       </div>
    {/* for login details  */}
       <div className="input-group">
-        <label htmlFor="email">Email</label>
+        <label htmlFor="email"><strong>Email:</strong></label>
         <input 
           onChange={(e) =>{setEmail(e.target.value)}}
         type="email" id="email" name="email" placeholder='Enter your email' />
       </div>
       {/* for password */}
        <div className="input-group">
-        <label htmlFor="password">Password</label>
+        <label htmlFor="password"><strong>Password:</strong></label>
         <input 
         onChange={(e) =>{setPassword(e.target.value)}}
         type="password" id="password" name="password" placeholder='Enter your password' />

@@ -15,23 +15,23 @@ const Feature = () => {
 
   <div className="available-feature">
     <div className="feature-content">
-      <span className="feature-number">01</span>
+     
 
       <h2>AI Resume Analysis</h2>
 
-      <p className="feature-description">
+          <p className="feature-description">
         Upload your resume and let AI analyze it instantly.
-      </p>
+           </p>
 
       <p className="feature-subtitle">What you'll get:</p>
 
-      <ul>
-        <li>✓ Skills detected</li>
-        <li>✓ Experience analysis</li>
-        <li>✓ Strengths & weaknesses</li>
-      </ul>
+       <ul>
+            <li>✓ Skills detected</li>
+            <li>✓ Experience analysis</li>
+            <li>✓ Strengths & weaknesses</li>
+         </ul>
     </div>
-  </div>
+</div>
 </section>
   )
 }

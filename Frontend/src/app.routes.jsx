@@ -8,10 +8,15 @@ import Interview from "./features/interview/pages/interview";
 import Layout from "./Layout";
 import { children } from "react";
 import ActualHome from "./features/auth/page/ActualHome";
+import ErrorPage from "./features/auth/page/ErrorPage";
 export const router  = createBrowserRouter([
       {
         element:<Layout/>,
        children:[
+        {
+     path:"*",
+     element:<ErrorPage/>
+        },
         {
        path:"/",
        element:<ActualHome/>
