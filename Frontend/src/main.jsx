@@ -5,6 +5,7 @@ import { router } from "./app.routes";
 import "./style.scss";
 import { AuthProvider } from "./features/auth/auth.context";
 import App from "./App"
+
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <App/>

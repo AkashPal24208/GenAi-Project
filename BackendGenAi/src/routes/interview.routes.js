@@ -13,7 +13,7 @@ const upload = require('../middleware/file.middleware');
  * @access  private 
  */
 
-  interviewRouter.post("/",authMiddleware.authUser,upload.single("resume"),interviewController.generateInterviewReportController);  // it forward user only when logged in user steps in .
+  interviewRouter.post("/gen-report",authMiddleware.authUser,upload.single("resume"),interviewController.generateInterviewReportController);  // it forward user only when logged in user steps in .
 
 /**
  * @route GET/api/interview/report/:interviewId
@@ -29,7 +29,7 @@ const upload = require('../middleware/file.middleware');
  * @access private 
  */
 
-   interviewRouter.get("/",authMiddleware.authUser,interviewController.getAllInterviewReportsController)
+   interviewRouter.get("/gen-report",authMiddleware.authUser,interviewController.getAllInterviewReportsController)
 
 /**
  * @route  GET/api/interview/resume/pdf
@@ -38,4 +38,5 @@ const upload = require('../middleware/file.middleware');
  */
 
 interviewRouter.post("/resume/pdf/:interviewReportId",authMiddleware.authUser,interviewController.generateResumePdfController)
+
 module.exports = interviewRouter;
