@@ -28,7 +28,7 @@ export const generateInterviewReport = async ({jobDescription,selfDescription,re
  * */ 
 
 export const getInterviewReportById = async (interviewId)=>{
-    const response = await api.get(`/api/interview/report/${interviewId}`)
+    const response = await api.get(`/api/interview/past-report/${interviewId}`)
 
     return response.data
 }
@@ -38,7 +38,7 @@ export const getInterviewReportById = async (interviewId)=>{
  * */ 
 
 export const getAllInterviewReports = async ()=>{
-    const response = await api.get("/api/interview/gen-report")
+    const response = await api.get("/api/interview/past-report")
 
     return response.data
 }
@@ -47,9 +47,10 @@ export const getAllInterviewReports = async ()=>{
  * @description service to generate resume pdf on user self Description ,resume,content and job Description
  */
 
-export const generateResumePdf = async ({interviewReportById})=>{
-    const response = await api.post(`/api/interview/resume/pdf/${interviewReportById}`,null,{
-        responseType:"blob"
+export const generateResumePdf = async ({interviewReportId})=>{
+    const response = await api.post(`/api/interview/resume/pdf/${interviewReportId}`,null,{
+        responseType:"blob" 
     })
     return response.data
 }
+   

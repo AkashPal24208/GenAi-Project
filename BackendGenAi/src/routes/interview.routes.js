@@ -21,7 +21,7 @@ const upload = require('../middleware/file.middleware');
  * @access private
  */
  
-   interviewRouter.get("/report/:interviewId",authMiddleware.authUser,interviewController.getInterviewReportByIdController)
+   interviewRouter.get("/past-report/:interviewId",authMiddleware.authUser,interviewController.getInterviewReportByIdController)
 
 /**
  * @route GET/api/interview/
@@ -29,7 +29,7 @@ const upload = require('../middleware/file.middleware');
  * @access private 
  */
 
-   interviewRouter.get("/gen-report",authMiddleware.authUser,interviewController.getAllInterviewReportsController)
+   interviewRouter.get("/past-report",authMiddleware.authUser,interviewController.getAllInterviewReportsController)
 
 /**
  * @route  GET/api/interview/resume/pdf

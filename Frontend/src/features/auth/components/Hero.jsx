@@ -4,7 +4,7 @@ const Hero = () => {
   return (
      <section className='hero'>
         <div className='hero-content'>
-            <h1>Bilding something Amazing</h1>
+            <h1>Building something Amazing</h1>
             <p>Analyze you resume to provide you better options</p>
 
             <div className='hero-buttons'>

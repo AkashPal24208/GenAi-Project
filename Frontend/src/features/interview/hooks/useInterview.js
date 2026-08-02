@@ -64,10 +64,13 @@ export const useInterview = ()=>{
 
     const getReports = async ()=>{
         setLoading(true)
-        let response = null
+        let response = null  
         try{
-             response = await getAllInterviewReports()
-            setReports(response.interviewReport)
+        const response = await getAllInterviewReports();
+        setReports(response.interviewReports);
+        console.log("Response:", response);
+        return response.interviewReports;
+    
         }
         catch(error){
             console.log(error)
@@ -96,7 +99,7 @@ const getResumePdf = async (interviewReportId) => {
     let response = null
 
     try {
-        response = await generateReportPdf({ interviewReportId })
+        response = await generateResumePdf({ interviewReportId })
 
         const url = window.URL.createObjectURL(
             new Blob([response], {

@@ -5,6 +5,9 @@ import {login,register,logout,getme} from "../services/auth.api";
 
 export const useAuth = ()=>{
     const context  = useContext(AuthContext)
+    if(!context){
+        throw new Error("useAuth must be used within AuthProvider");
+    }
     const {user,setUser,loading,setLoading } = context
     
     // this function handle the loading part during login
