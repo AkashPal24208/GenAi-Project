@@ -7,20 +7,19 @@ app.use(express.json());
 app.use(cookieParser());
 
 // helmet setUp 
-
 app.use(
   helmet({
     contentSecurityPolicy: {
       directives: {
        defaultSrc: ["'self'"],
-        connectSrc: [
-          "'self'", 
-          "http://localhost:3001",
-          "http://localhost:5173",
-          "http://localhost:81" ,
-          "https://gen-ai-project-606bxn5w7-akash-47e7.vercel.app"    // <--- Yahan http://localhost:81 add kar dein
-        ],
-
+       connectSrc: [
+         "'self'", 
+         "http://localhost:3001",
+         "http://localhost:5173",
+         "http://localhost:81",
+         "https://gen-ai-project-606bxn5w7-akash-47e7.vercel.app",
+         "https://gen-ai-project-git-main-akash-47e7.vercel.app" // <--- Yeh naya Vercel URL add kar diya hai
+       ],
       },
     },
   })
@@ -28,11 +27,15 @@ app.use(
 
 // using cors 
 app.use(cors({
-    origin: ['http://localhost:5173', 'http://localhost:80', 'http://localhost:81','gen-ai-project-606bxn5w7-akash-47e7.vercel.app'],
+    origin: [
+      'http://localhost:5173', 
+      'http://localhost:80', 
+      'http://localhost:81',
+      'https://gen-ai-project-606bxn5w7-akash-47e7.vercel.app',
+      'https://gen-ai-project-git-main-akash-47e7.vercel.app' // <--- Yahan bhi https:// ke sath add kar diya hai
+    ],
     credentials: true
-
 }));
-
 /*require all routes here */
 const authRouter = require('./routes/auth.routes');
 
