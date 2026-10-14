@@ -1,0 +1,44 @@
+services:
+   mongodb:
+     image: mongo:7.0
+     container_name: genai_db
+     restart: always
+     ports:
+      - "27018:27017"
+     volumes:
+      - mongo-data:/data/db
+     environment:
+      - MONGO_INITDB_DATABASE=GenAiProject
+
+  # 2. Node.js container 
+   backend:
+     build:
+       context: BackendGenAi
+       dockerfile: Dockerfile
+     container_name: gen_backend
+     restart: always
+     ports:
+      - "3001:3000"
+     env_file:
+      - ./BackendGenAi/.env
+     environment:
+      - PORT=3000
+      - MONGO_URI=mongodb://mongodb:27017/GenAiProject
+     depends_on:
+      - mongodb
+
+  # React frontend container 
+   frontend:
+     build:
+       context: Frontend
+       dockerfile: Dockerfile
+     container_name: genai_frontend
+     restart: always
+     ports:
+       - "81:80"
+     depends_on:
+       - backend
+
+# persistent volumes for mongodb data 
+volumes:
+  mongo-data: 

@@ -20,19 +20,26 @@ export const useInterview = ()=>{
 
     const generateReport = async ({jobDescription,selfDescription,resumeFile})=>{
         setLoading(true)
-        let response  = null
+        
         try{
-             response = await generateInterviewReport({jobDescription,selfDescription,resumeFile})
+           const  response = await generateInterviewReport({jobDescription,selfDescription,resumeFile})
+            // agar response and interviewReort na aye 
+            if(!response || !response.interviewReport){
+                throw new Error("Interview report data is missing from response");
+            }
+
             setReport(response.interviewReport)
+            // if success then return 
+            return response.interviewReport;
+
         }
         catch(err){
             console.log("error while generating report")
+            throw err;
         }
         finally{
             setLoading(false)
         }
-
-        return response.interviewReport
     }
 
     /**
@@ -70,15 +77,15 @@ export const useInterview = ()=>{
         setReports(response.interviewReports);
         console.log("Response:", response);
         return response.interviewReports;
-    
         }
         catch(error){
             console.log(error)
+            throw err;
         }
         finally{
             setLoading(false)
         }
-        return response.interviewReport
+       
     }
     
     // useEffect(()=>{

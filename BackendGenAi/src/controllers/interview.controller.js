@@ -9,33 +9,43 @@ const InterviewReportModel = require('../models/interviewReport.model')
  */
 
 
- async function generateInterviewReportController(req,res){
-     // const resumeFile = req.file
+const pdfParse = require("pdf-parse");
 
-     const resumeContent = await (new pdfParse.PDFParse(Uint8Array.from(req.file.buffer))).getText()
-      const {selfDescription,jobDescription} = req.body
+async function generateInterviewReportController(req, res) {
+  try {
+    // Check karein ki file properly upload hui hai ya nahi
+    if (!req.file) {
+      return res.status(400).json({ error: "Resume PDF file is required" });
+    }
 
-     const interviewReportByAi = await generateInterviewReport({
-        resume:resumeContent.text,
-        selfDescription,
-        jobDescription
-     })
+    const { text: resumeText } = await pdfParse(req.file.buffer);
+    const { selfDescription, jobDescription } = req.body;
+
+    const interviewReportByAi = await generateInterviewReport({
+      resume: resumeText,
+      selfDescription,
+      jobDescription
+    });
 
     const interviewReport = await InterviewReportModel.create({
-        user:req.user.id,
-        resume:resumeContent.text,
-        selfDescription,
-        jobDescription,
-        ...interviewReportByAi,
-  title: interviewReportByAi.title || "Interview Report"
-    })
-   
-     res.status(201).json({
-        message:"Interview Report generated successfully ",
-        interviewReport
-     })
+      user: req.user.id,
+      resume: resumeText,
+      selfDescription,
+      jobDescription,
+      ...interviewReportByAi,
+      title: interviewReportByAi.title || "Interview Report"
+    });
 
+    res.status(201).json({
+      message: "Interview Report generated successfully",
+      interviewReport
+    });
+  } catch (err) {
+    console.error("Error generating interview report:", err);
+    res.status(500).json({ error: "Failed to generate interview report" });
+  }
 }
+
 
 
 /**
@@ -82,26 +92,22 @@ async function getAllInterviewReportsController(req,res){
  * @description generate resume pdf based in user selfDescription,job Description,resume
  */
 async function generateResumePdfController(req,res){
-    const {interviewReportId} = req.params
-
-    const interviewReport = await InterviewReportModel.findOne({_id:interviewReportId,user:req.user.id}) 
-
-    if(!interviewReport){
-      return res.status(404).json({
-        message:"Interview report not found."
-      })
+   const { jobDescription, selfDescription } = req.body;
+   
+   if(!jobDescription || !selfDescription) {
+        return res.status(400).json({
+          message: "Job description and self description are required."
+        });
     }
 
-    
-    const {resume,jobDescription,selfDescription} = interviewReport
-    
-    const pdfBuffer = await generateResumePdf({resume,jobDescription,selfDescription})
+
+
+    const pdfBuffer = await generateResumePdf({jobDescription,selfDescription})
 
     res.set({
       "Content-Type":"application/pdf",
-      "Content-Disposition":`attachment; filename=resume_${interviewReportId}.pdf`
-    })
-     res.send(pdfBuffer)
+      "Content-Disposition": "inline; filename=ATS_Optimized_Resume.pdf"    })
+     res.send(pdfBuffer) 
 }
 
 module.exports = {generateInterviewReportController,getInterviewReportByIdController,getAllInterviewReportsController,generateResumePdfController};

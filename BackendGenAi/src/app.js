@@ -12,9 +12,12 @@ app.use(
   helmet({
     contentSecurityPolicy: {
       directives: {
-        defaultSrc: ["'self'"],
-        connectSrc: ["'self'", "http://localhost:3000",
-            "http://localhost:5173" 
+       defaultSrc: ["'self'"],
+        connectSrc: [
+          "'self'", 
+          "http://localhost:3001",
+          "http://localhost:5173",
+          "http://localhost:81"     // <--- Yahan http://localhost:81 add kar dein
         ],
 
       },
@@ -24,7 +27,7 @@ app.use(
 
 // using cors 
 app.use(cors({
-    origin:"http://localhost:5173",
+    origin: ['http://localhost:5173', 'http://localhost:80', 'http://localhost:81'],
     credentials: true
 
 }));

@@ -23,7 +23,7 @@ const tokenBlackListModel = require('../models/blacklist.model');
  
     // after getting token we have to verify it 
     try{
-     const decoded =jwt.verify(token, process.env.JWT_SECRET);
+     const decoded =jwt.verify(token, process.env.JWT_SECRET_KEY);
      req.user = decoded
      next();
 

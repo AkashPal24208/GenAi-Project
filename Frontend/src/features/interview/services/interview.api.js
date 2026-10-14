@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: "http://localhost:3000",
+    baseURL: "http://localhost:3001",
     withCredentials: true,
 })
 
@@ -15,11 +15,7 @@ export const generateInterviewReport = async ({jobDescription,selfDescription,re
     formData.append("selfDescription",selfDescription)
     formData.append("resume",resumeFile)
 
-    const response = await api.post("/api/interview/gen-report", formData,{
-        headers:{
-            "Content-Type":"multipart/form-data"
-        }
-    })
+    const response = await api.post("/api/interview/gen-report", formData)
     return response.data
 }
 
@@ -47,8 +43,11 @@ export const getAllInterviewReports = async ()=>{
  * @description service to generate resume pdf on user self Description ,resume,content and job Description
  */
 
-export const generateResumePdf = async ({interviewReportId})=>{
-    const response = await api.post(`/api/interview/resume/pdf/${interviewReportId}`,null,{
+export const generateResumePdf = async ({jobDescription,selfDescription})=>{
+    const response = await api.post(`/api/interview/resume/pdf/`,{
+        jobDescription,
+        selfDescription
+    },{
         responseType:"blob" 
     })
     return response.data

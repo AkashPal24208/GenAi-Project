@@ -1,7 +1,7 @@
 import axios from "axios"
 
  const api = axios.create({
-    baseURL:"http://localhost:3000",
+    baseURL:"http://localhost:3001",
     withCredentials:true 
 })
 
@@ -53,17 +53,24 @@ export async function logout(){
 // get-me connection 
 export async function getme(){
     try{
-       const token = localStorage.getItem("token")
-       const response = await api.get("/api/auth/get-me",{
-          withCredentials:true
-       })
+       const response = await api.get("/api/auth/get-me")
      
        return response.data
     } 
     catch(err){
-        console.log("error in get-me controller",err);
+        console.log("error in fetching current user :",err);
+        throw err;
     }
-
+ 
 }
+
+export const googleLogin = async (code) => {
+    try {
+        const response = await api.post('/api/auth/google', { code });
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+};
 
 

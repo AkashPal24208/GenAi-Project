@@ -2,6 +2,7 @@ const express = require('express');
 const authController = require('../controllers/auth.controller');
 const authRouter = express.Router();
 const authMiddleware = require('../middleware/auth.middleware');
+
 /**
  * @route POST /api/auth/register
  * @description Register a new user
@@ -34,4 +35,8 @@ authRouter.post("/logout",authController.logoutUserController);
 
 authRouter.get("/get-me",authMiddleware.authUser,authController.getMeController)
 
+/**
+ * @route POST/api/auth/google
+ */
+authRouter.post('/google',authController.googleLoginController)
 module.exports = authRouter
