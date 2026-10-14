@@ -17,7 +17,8 @@ app.use(
           "'self'", 
           "http://localhost:3001",
           "http://localhost:5173",
-          "http://localhost:81"     // <--- Yahan http://localhost:81 add kar dein
+          "http://localhost:81" ,
+          "https://gen-ai-project-606bxn5w7-akash-47e7.vercel.app"    // <--- Yahan http://localhost:81 add kar dein
         ],
 
       },
@@ -27,7 +28,7 @@ app.use(
 
 // using cors 
 app.use(cors({
-    origin: ['http://localhost:5173', 'http://localhost:80', 'http://localhost:81'],
+    origin: ['http://localhost:5173', 'http://localhost:80', 'http://localhost:81','gen-ai-project-606bxn5w7-akash-47e7.vercel.app'],
     credentials: true
 
 }));
