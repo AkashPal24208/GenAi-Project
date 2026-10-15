@@ -18,7 +18,7 @@ const PORT = process.env.PORT || 3001;
 async function startServer(){
     try{
      await connectToDB();
-     app.listen(PORT,()=>{
+     app.listen(PORT,'0.0.0.0',()=>{
     console.log(`http://localhost:${PORT}`); 
 });
     }catch(err){
